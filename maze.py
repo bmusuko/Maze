@@ -18,6 +18,7 @@ def main():
 	m = len(a[0])
 	a.reverse()
 	b = deepcopy(a)
+	maze = deepcopy(a)
 	#b = a.copy()
 	for j in range (n):
 		if(a[j][0] == 0):
@@ -78,9 +79,11 @@ def main():
 						le.append((x-1,y))
 						antrian.append((x-1,y,le))
 						#print("left")
+	"""
 	if(found):
 		print(jalurBFS)
 		print("penelusuran BFS sebanyak : ",telusurBFS)
+	"""
 	found = False
 	antrian = [(xawal,yawal,jarak(xawal,yawal,xakhir,yakhir),0,[(xawal,yawal)])] #[(x,y,f,g,[(x,y)])]
 	
@@ -136,12 +139,19 @@ def main():
 		antrian = sorted(antrian,key=lambda x:x[2])
 		#print(antrian)
 		
-	if(found):
+	"""
+		if(found):
 			print(jalurAStar)
 			#print(antrian)
 			print ("penelusuran A* sebanyak : ",telusurAstar)
 
-
+	"""
+	for (x,y) in jalurAStar:
+		maze[y][x] = 2
+	"""
+	for m in maze :
+		print(m)		
+	"""
 if __name__ == '__main__':
 	main()
 
