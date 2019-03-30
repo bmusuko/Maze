@@ -1,0 +1,33 @@
+#:kivy 1.0
+
+<Maze>:
+    orientation: 'horizontal'
+    id: mazeLayout
+    inputFile: fileInput
+    mazeLabel: empty_maze_lbl
+    BoxLayout:
+        orientation: 'vertical'
+        size_hint_x: 0.4
+        size_hint_y: 0.4
+        spacing: 5
+        TextInput:
+            id: fileInput
+            text: 'maze_small.txt'
+        BoxLayout:
+            size_hint_y: 0.5
+            spacing: 2
+            Button:
+                text: 'Generate'
+                on_press:
+                    mazeLayout.generateMaze()
+            Button:
+                text: 'Reset'
+                on_press:
+                    mazeLayout.resetMaze()
+        Button:
+            text: 'Answer'
+            on_press:
+                mazeLayout.generateSolution()
+    Label:
+        id: empty_maze_lbl
+        text: 'Input maze file in text box and press generate'

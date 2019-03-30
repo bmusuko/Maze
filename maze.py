@@ -4,8 +4,8 @@ import math
 def jarak(x1,y1,x2,y2):
 	return math.sqrt((x1-x2)**2 + (y1-y2)**2)
 
-def main():
-	file = open("input.txt","r")
+def solve(filename):
+	file = open(filename,"r")
 	a = []
 	n = 0
 	for line in file:
@@ -152,6 +152,12 @@ def main():
 	for m in maze :
 		print(m)		
 	"""
-if __name__ == '__main__':
-	main()
-
+	maze.reverse()
+	ans = open("ans.txt", "w+")
+	i = len(maze)
+	for lines in maze:
+		for x in lines:
+			ans.write(str(x))
+		if (i > 1):
+			ans.write('\n')
+			i = i - 1
