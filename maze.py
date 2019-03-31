@@ -4,7 +4,7 @@ import math
 def jarak(x1,y1,x2,y2):
 	return math.sqrt((x1-x2)**2 + (y1-y2)**2)
 
-def solve(filename):
+def solveBFS(filename):
 	file = open(filename,"r")
 	a = []
 	n = 0
@@ -115,6 +115,80 @@ def solve(filename):
 		print(jalurBFS)
 		print("penelusuran BFS sebanyak : ",telusurBFS)
 	"""
+	for (x,y) in jalurBFS:
+		maze[y][x] = 2
+		
+	maze.reverse()
+	ans = open("ans.txt", "w+")
+	i = len(maze)
+	for lines in maze:
+		for x in lines:
+			ans.write(str(x))
+		if (i > 1):
+			ans.write('\n')
+			i = i - 1
+
+def solveAStar(filename):
+	file = open(filename,"r")
+	a = []
+	n = 0
+	for line in file:
+		y = line.rstrip()
+		temp = []
+		for c in y:	
+			temp.append(int(c))
+		a.append(temp)
+		n += 1
+	m = len(a[0])
+	a.reverse()
+	b = deepcopy(a)
+	maze = deepcopy(a)
+	#b = a.copy()
+	found = False
+	c = 0 
+	
+	for j in range (n):
+		if(a[j][0] == 0):
+			if(c==0):
+				xawal = 0
+				yawal = j
+				c += 1
+			elif(c==1):
+				xakhir = 0
+				yakhir = j
+				c += 1
+	
+	for j in range(m):
+		if(a[n-1][j] == 0):
+			if(c==0):
+				xawal = j
+				yawal = m-1
+				c += 1
+			elif(c==1):
+				xakhir = j
+				yakhir = m-1
+				c += 1
+	
+	for j in range (n):
+		if(a[j][m-1] == 0):
+			if(c==0):
+				xawal = m-1
+				yawal = j
+				c += 1
+			elif(c==1):
+				xakhir = m-1
+				yakhir = j
+				c += 1 
+	for j in range(m):
+		if(a[0][j] == 0):
+			if(c== 0):	
+				xawal = j
+				yawal = 0
+			elif(c==1):
+				xakhir = j
+				yakhir = 0
+				c += 1
+
 	found = False
 	antrian = [(xawal,yawal,jarak(xawal,yawal,xakhir,yakhir),0,[(xawal,yawal)])] #[(x,y,f,g,[(x,y)])]
 	
