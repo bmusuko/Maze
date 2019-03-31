@@ -9,7 +9,7 @@ from kivy.uix.boxlayout import BoxLayout
 from kivy.uix.textinput import TextInput
 from maze import *
 
-Window.clearcolor = (0.9, 0.9, 0.9, 0.9)
+Window.clearcolor = (0,0.55,0.35,0.5)
 
 MazeCreated = False
 
