@@ -20,20 +20,51 @@ def solve(filename):
 	b = deepcopy(a)
 	maze = deepcopy(a)
 	#b = a.copy()
+	found = False
+	c = 0 
+	
 	for j in range (n):
 		if(a[j][0] == 0):
-			xawal = 0
-			yawal = j
-			break
+			if(c==0):
+				xawal = 0
+				yawal = j
+				c += 1
+			elif(c==1):
+				xakhir = 0
+				yakhir = j
+				c += 1
+	
+	for j in range(m):
+		if(a[n-1][j] == 0):
+			if(c==0):
+				xawal = j
+				yawal = m-1
+				c += 1
+			elif(c==1):
+				xakhir = j
+				yakhir = m-1
+				c += 1
+	
 	for j in range (n):
 		if(a[j][m-1] == 0):
-			xakhir = m-1
-			yakhir = j
-			break
-	#xawal = 2
-	#yawal = 0
-	#xakhir = 2
-	#yakhir = 4
+			if(c==0):
+				xawal = m-1
+				yawal = j
+				c += 1
+			elif(c==1):
+				xakhir = m-1
+				yakhir = j
+				c += 1 
+	for j in range(m):
+		if(a[0][j] == 0):
+			if(c== 0):	
+				xawal = j
+				yawal = 0
+			elif(c==1):
+				xakhir = j
+				yakhir = 0
+				c += 1
+
 	telusurBFS = 0
 	#print(xawal,yawal,xakhir,yakhir,n,m)
 	antrian = [(xawal,yawal,[(xawal,yawal)])]		
