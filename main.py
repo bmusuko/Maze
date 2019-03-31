@@ -37,11 +37,11 @@ class Maze(BoxLayout):
                     self.grid.add_widget(gridButton)
             MazeCreated = True
 
-    def generateSolution(self):
+    def generateSolution(self, mode):
         global MazeCreated
 
         if (MazeCreated):
-            (SolutionInChar, width, height) = self.readSolutionfromFile()
+            (SolutionInChar, width, height) = self.readSolutionfromFile(mode)
             self.remove_widget(self.grid)
             self.grid = GridLayout(rows = height, cols = width)
             self.add_widget(self.grid)
@@ -70,13 +70,16 @@ class Maze(BoxLayout):
         width = height
         return (MazeInChar, width, height)
 
-    def readSolutionfromFile(self):
+    def readSolutionfromFile(self, mode):
         SolutionInChar = []
         height = 0
         width = 0
 
         (MazeInChar, x, y) = self.readMazefromFile()
-        solve(self.inputFile.text)
+        if (mode == 0): #BFS
+            solveBFS(self.inputFile.text)
+        else: # mode == 1
+            solveAStar(self.inputFile.text)
 
         file = open("ans.txt", "r")
         for lines in file:
