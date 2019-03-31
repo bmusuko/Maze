@@ -10,6 +10,7 @@
         size_hint_x: 0.4
         size_hint_y: 0.4
         spacing: 5
+        
         TextInput:
             id: fileInput
             text: 'maze_small.txt'
@@ -25,9 +26,13 @@
                 on_press:
                     mazeLayout.resetMaze()
         Button:
-            text: 'Answer'
+            text: 'Solve with BFS'
             on_press:
-                mazeLayout.generateSolution()
+                mazeLayout.generateSolution(0) # mode 0 means using BFS
+        Button:
+            text: 'Solve with AStar'
+            on_press:
+                mazeLayout.generateSolution(1) # mode 1 means using AStar
     Label:
         id: empty_maze_lbl
         text: 'Input maze file in text box and press generate'
